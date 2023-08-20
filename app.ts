@@ -38,4 +38,4 @@ app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
   res.render('error');
 });
 
-export default app;
+module.exports = app; // Export the Express application instance
