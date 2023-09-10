@@ -10,7 +10,22 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
 const index_1 = __importDefault(require("./routes/index"));
 const users_1 = __importDefault(require("./routes/users"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+// Replace with the URL of your GitHub page
+const allowedOrigins = ['http://localhost:8080', 'https://v0rren.github.io'];
+const corsOptions = {
+    origin: (origin, callback) => {
+        console.log('Origin: ', origin);
+        if (origin === undefined || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'), false);
+        }
+    },
+};
+app.use((0, cors_1.default)(corsOptions));
 // view engine setup
 app.set('views', path_1.default.join(__dirname, 'views'));
 app.set('view engine', 'pug');

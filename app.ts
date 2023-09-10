@@ -3,11 +3,29 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import cors, { CorsOptions } from 'cors';
 
 const app = express();
+
+
+
+// Replace with the URL of your GitHub page
+const allowedOrigins = ['http://localhost:8080', 'https://v0rren.github.io'];
+
+const corsOptions: CorsOptions = {
+  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    console.log('Origin: ', origin);
+    if (origin === undefined || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'), false);
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
