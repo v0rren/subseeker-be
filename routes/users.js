@@ -8,6 +8,6 @@ const router = express_1.default.Router();
 /* GET users listing. */
 router.get('/', (req, res, next) => {
     console.log('Received GET request to /users');
-    res.send('respond with a resource');
+    res.json({ message: 'Hello, World!' });
 });
 exports.default = router;
