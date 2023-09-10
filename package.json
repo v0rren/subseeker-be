@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run build && node bin/www.js",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "npm run build && node bin/www.js"
   },
   "dependencies": {
     "@types/cors": "^2.8.14",

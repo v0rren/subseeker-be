@@ -4,7 +4,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+import subredditRouter from './routes/subreddit';
 import cors, { CorsOptions } from 'cors';
 
 const app = express();
@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/subreddit', subredditRouter);
 
 // catch 404 and forward to error handler
 app.use((_req: Request, _res: Response, next: NextFunction) => {
